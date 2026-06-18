@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:pages": "VITE_BASE_PATH=/Davetiye/ npm run build",
+    "build:og": "magick -background none -density 300 public/og-image.svg -resize 1200x630 PNG32:public/og-image.png && magick -background none -density 300 public/og-image.svg -resize 1200x630 -quality 95 public/og-image.jpg",
+    "build:pages": "npm run build:og && VITE_BASE_PATH=/Davetiye/ npm run build",
     "deploy": "npm run build:pages && gh-pages -d dist -b gh-pages -t true",
     "lint": "eslint .",
     "preview": "vite preview"
