@@ -1,3 +1,5 @@
+import { publicAsset } from "../lib/publicAsset";
+
 interface ButterflyProps {
   position?: "top" | "bottom";
 }
@@ -14,7 +16,7 @@ export function Butterfly({ position = "top" }: ButterflyProps) {
     >
       <div className={isBottom ? "hero-butterfly-flip" : "h-full w-full"}>
         <img
-          src="/kelebek.png"
+          src={publicAsset("kelebek.png")}
           alt=""
           aria-hidden="true"
           className="hero-butterfly-img"

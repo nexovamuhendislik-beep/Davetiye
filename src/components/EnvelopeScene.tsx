@@ -1,4 +1,5 @@
 import { useEffect, useState, type CSSProperties } from "react";
+import { publicAsset } from "../lib/publicAsset";
 
 interface EnvelopeSceneProps {
   onOpen: () => void;
@@ -215,7 +216,7 @@ export function EnvelopeScene({ onOpen }: EnvelopeSceneProps) {
           aria-label="Davetiyeyi aç"
         >
           <img
-            src="/muhur.png"
+            src={publicAsset("muhur.png")}
             alt="Mühür"
             className="env-seal-img"
             draggable={false}
