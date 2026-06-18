@@ -3,6 +3,7 @@ import { publicAsset } from "../lib/publicAsset";
 
 interface EnvelopeSceneProps {
   onOpen: () => void;
+  onSealClick?: () => void;
 }
 
 type Phase = "idle" | "opening";
@@ -114,7 +115,7 @@ const flapEdgePaths = {
   },
 };
 
-export function EnvelopeScene({ onOpen }: EnvelopeSceneProps) {
+export function EnvelopeScene({ onOpen, onSealClick }: EnvelopeSceneProps) {
   const [phase, setPhase] = useState<Phase>("idle");
   const opening = phase === "opening";
 
@@ -127,6 +128,7 @@ export function EnvelopeScene({ onOpen }: EnvelopeSceneProps) {
 
   const open = () => {
     if (phase !== "idle") return;
+    onSealClick?.();
     setPhase("opening");
     window.setTimeout(onOpen, 1400);
   };

@@ -15,6 +15,7 @@ import { VideoBackground } from "./components/VideoBackground";
 
 function App() {
   const [opened, setOpened] = useState(false);
+  const [musicStarted, setMusicStarted] = useState(false);
 
   useEffect(() => {
     if (opened) {
@@ -32,7 +33,7 @@ function App() {
       <div className="relative min-h-screen">
         <VideoBackground />
         <FallingFlowers />
-        {opened && <MusicPlayer autoPlay />}
+        {musicStarted && <MusicPlayer autoPlay />}
 
         <div className="relative z-10">
           <HeroSection />
@@ -52,7 +53,9 @@ function App() {
         </div>
       </div>
 
-      {!opened && <EnvelopeScene onOpen={handleOpen} />}
+      {!opened && (
+        <EnvelopeScene onOpen={handleOpen} onSealClick={() => setMusicStarted(true)} />
+      )}
     </>
   );
 }
