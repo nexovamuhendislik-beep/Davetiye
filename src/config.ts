@@ -47,7 +47,7 @@ export const families = {
   },
 };
 
-export const musicSrc = "";
+export const musicSrc = "music.mp3";
 export const videoSrc = "";
 
 export const events: EventDetails[] = [

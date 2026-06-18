@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { musicSrc } from "../config";
+import { publicAsset } from "../lib/publicAsset";
 
 interface MusicPlayerProps {
   autoPlay?: boolean;
@@ -8,13 +9,17 @@ interface MusicPlayerProps {
 export function MusicPlayer({ autoPlay = false }: MusicPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
+  const src = musicSrc ? publicAsset(musicSrc) : "";
 
   useEffect(() => {
-    if (!autoPlay || !musicSrc) return;
-    audioRef.current?.play().then(() => setPlaying(true)).catch(() => {});
-  }, [autoPlay]);
+    if (!autoPlay || !src) return;
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.45;
+    audio.play().then(() => setPlaying(true)).catch(() => {});
+  }, [autoPlay, src]);
 
-  if (!musicSrc) return null;
+  if (!src) return null;
 
   const toggle = () => {
     const audio = audioRef.current;
@@ -29,7 +34,7 @@ export function MusicPlayer({ autoPlay = false }: MusicPlayerProps) {
 
   return (
     <>
-      <audio ref={audioRef} src={musicSrc} loop preload="auto" />
+      <audio ref={audioRef} src={src} loop preload="auto" />
       <button
         type="button"
         onClick={toggle}
